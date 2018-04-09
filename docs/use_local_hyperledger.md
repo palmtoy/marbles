@@ -30,10 +30,42 @@ Once you have cloned the repository start downloading the docker images of the v
 ```bash
 curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/release-1.1/scripts/bootstrap-1.1.0-preview.sh -o setup_script.sh
 sudo bash setup_script.sh
+
+sudo docker images
+`Output ->`
+REPOSITORY                                  TAG                    IMAGE ID            CREATED             SIZE
+hyperledger/fabric-ca                       latest                 2736904862db        5 months ago        217.6 MB
+docker.io/hyperledger/fabric-ca             x86_64-1.1.0-preview   2736904862db        5 months ago        217.6 MB
+docker.io/hyperledger/fabric-tools          x86_64-1.1.0-preview   c584c20ac82b        5 months ago        1.42 GB
+hyperledger/fabric-tools                    latest                 c584c20ac82b        5 months ago        1.42 GB
+docker.io/hyperledger/fabric-couchdb        x86_64-1.1.0-preview   5b8a15e6e972        5 months ago        1.574 GB
+hyperledger/fabric-couchdb                  latest                 5b8a15e6e972        5 months ago        1.574 GB
+hyperledger/fabric-kafka                    latest                 cf09c5534ef9        5 months ago        1.371 GB
+docker.io/hyperledger/fabric-kafka          x86_64-1.1.0-preview   cf09c5534ef9        5 months ago        1.371 GB
+docker.io/hyperledger/fabric-zookeeper      x86_64-1.1.0-preview   ac127485fdc7        5 months ago        1.373 GB
+hyperledger/fabric-zookeeper                latest                 ac127485fdc7        5 months ago        1.373 GB
+docker.io/hyperledger/fabric-orderer        x86_64-1.1.0-preview   2fccc91736df        5 months ago        158.8 MB
+hyperledger/fabric-orderer                  latest                 2fccc91736df        5 months ago        158.8 MB
+docker.io/hyperledger/fabric-peer           x86_64-1.1.0-preview   337f3d90b452        5 months ago        164.6 MB
+hyperledger/fabric-peer                     latest                 337f3d90b452        5 months ago        164.6 MB
+docker.io/hyperledger/fabric-javaenv        x86_64-1.1.0-preview   cd459b218651        5 months ago        1.486 GB
+hyperledger/fabric-javaenv                  latest                 cd459b218651        5 months ago        1.486 GB
+docker.io/hyperledger/fabric-ccenv          x86_64-1.1.0-preview   82489d1c11e8        5 months ago        1.354 GB
+hyperledger/fabric-ccenv                    latest                 82489d1c11e8        5 months ago        1.354 GB
+```
+如果没有看到上面的输出结果, 或许下面的命令会有帮助:
+```bash
+将images(fabric-ca:1.1.0 和 fabric-tools:1.1.0-preview)打包到marbles-images.tar:
+sudo docker save -o ./marbles-images.tar fabric-ca:1.1.0 fabric-tools:1.1.0-preview
+```
+
+```bash
+将marbles-images.tar中的images导入docker本地镜像库中:
+sudo docker load -i ./marbles-images.tar
 ```
 
 Be sure to add these binaries to your PATH variable by running the following command or pasting it into you .profile file.
-
+务必使得下面的PATH在所有终端中都生效.
 ```bash
 export PATH=$PWD/bin:$PATH
 ```
@@ -84,6 +116,8 @@ If you have npm installation errors you will have to decipher those on your own!
 Good luck.
 
 ## 4. Test Network with Fabcar
+(下面的测试脚本运行过后会在目录'fabric-samples/fabcar/hfc-key-store'中产生一些临时文件, 务必在测试通过后删除这些临时文件)
+
 Finally lets test the network before we run marbles.
 Run query via `fabcar` with the commands:
 
