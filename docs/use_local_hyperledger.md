@@ -56,21 +56,15 @@ hyperledger/fabric-ccenv                    latest                 82489d1c11e8 
 如果没有看到上面的输出结果, 或许下面的命令会有帮助:
 ```bash
 将images(fabric-ca:1.1.0 和 fabric-tools:1.1.0-preview)打包到marbles-images.tar:
-sudo docker save -o ./marbles-images.tar fabric-ca:1.1.0 fabric-tools:1.1.0-preview
+sudo docker save -o ./marbles-images.tar docker.io/hyperledger/fabric-ca:x86_64-1.1.0-preview docker.io/hyperledger/fabric-tools:x86_64-1.1.0-preview ...
 
 将marbles-images.tar中的images导入docker本地镜像库中:
 sudo docker load -i ./marbles-images.tar
 
-为新导入的image打相应的'latest' tag:
-sudo docker tag hyperledger/fabric-orderer:x86_64-1.1.0-preview hyperledger/fabric-orderer:latest
+为新导入的所有images打相应的'latest' tag:
 sudo docker tag hyperledger/fabric-ca:x86_64-1.1.0-preview hyperledger/fabric-ca:latest
 sudo docker tag hyperledger/fabric-tools:x86_64-1.1.0-preview hyperledger/fabric-tools:latest
-sudo docker tag hyperledger/fabric-couchdb:x86_64-1.1.0-preview hyperledger/fabric-couchdb:latest
-sudo docker tag hyperledger/fabric-kafka:x86_64-1.1.0-preview hyperledger/fabric-kafka:latest
-sudo docker tag hyperledger/fabric-zookeeper:x86_64-1.1.0-preview hyperledger/fabric-zookeeper:latest
-sudo docker tag hyperledger/fabric-peer:x86_64-1.1.0-preview hyperledger/fabric-peer:latest
-sudo docker tag hyperledger/fabric-javaenv:x86_64-1.1.0-preview hyperledger/fabric-javaenv:latest
-sudo docker tag hyperledger/fabric-ccenv:x86_64-1.1.0-preview hyperledger/fabric-ccenv:latest
+... ...
 ```
 
 Be sure to add these binaries to your PATH variable by running the following command or pasting it into you .profile file.
