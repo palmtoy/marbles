@@ -65,6 +65,7 @@ sudo docker load -i ./marbles-images.tar
 ```
 
 Be sure to add these binaries to your PATH variable by running the following command or pasting it into you .profile file.
+
 务必使得下面的PATH在所有终端中都生效.
 ```bash
 export PATH=$PWD/bin:$PATH
