@@ -20,6 +20,27 @@ If these files are not found you will be unable to run either operation.
 **Choose 1 option below to create these files:**
 
 - **Option 1:** :lollipop: Use crypto files from a **locally hosted Hyperledger Fabric Network**. These certificates will be created with the `fabric-samples` example called `fabcar`. If you have already created the certs you should still re-run this step.
+```bash
+Edit the `<marbles root>/config/connection_profile_local.json`:
+	"client": {
+		"organization": "Org1MSP",
+		"credentialStore": {
+			"path": "$HOME/Workspace/GitHub/Blockchain/fabric-samples/fabcar/hfc-key-store"
+		}
+	},
+	... ...
+	"organizations": {
+		"Org1MSP": {
+			... ...
+			"x-adminCert": {
+				"path": "$HOME/Workspace/GitHub/Blockchain/fabric-samples/basic-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem"
+			},
+			"x-adminKeyStore": {
+				"path": "$HOME/Workspace/GitHub/Blockchain/fabric-samples/basic-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/"
+			}
+		}
+	},
+```
 - **Option 2:** Create the certificate and public key files manually.  Use this option when your Fabric network was **not** created from `fabric-samples`. [Generate Crypto Manually](https://console.bluemix.net/docs/services/blockchain/v10_application.html#generating-the-client-side-certificates)
 	- Once you are done add the private key and signed certificate files to this folder: `<marbles root>/config/crypto/`
 	- Next append the cert/key path information to your connection profile:
